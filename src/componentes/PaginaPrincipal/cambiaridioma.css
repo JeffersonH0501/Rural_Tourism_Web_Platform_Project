@@ -1,0 +1,28 @@
+.camb-l {
+    display: flex; /* Usa flexbox para alinear los elementos */
+    justify-content: flex-end; /* Alinea los botones hacia la derecha */
+    gap: 10px; /* Espacio entre los botones */
+  }
+  
+  .PaginaPrincipal-btn {
+    margin-top: 10px;
+    margin-right: 30px;
+    padding: 5px 15px; /* Ajusta el padding para cambiar el tamaño de los botones */
+    font-size: 14px; /* Tamaño de fuente más adecuado para botones */
+    background-color: #294B29; /* Color de fondo que combina con tu tema */
+    color: white; /* Color del texto */
+    border: none; /* Elimina el borde */
+    border-radius: 5px; /* Bordes redondeados para un look más moderno */
+    cursor: pointer; /* Cambia el cursor a pointer para indicar que es clickeable */
+    transition: background-color 0.3s, transform 0.2s; /* Transición suave para hover y click */
+  }
+  
+  .PaginaPrincipal-btn:hover {
+    background-color: #00ac00; /* Cambia el color al pasar el ratón por encima */
+    transform: translateY(-2px); /* Efecto de elevación al pasar el ratón */
+  }
+  
+  .PaginaPrincipal-btn:active {
+    transform: translateY(1px); /* Efecto de presionado al hacer clic */
+  }
+  

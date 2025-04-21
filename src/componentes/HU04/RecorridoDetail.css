@@ -1,0 +1,85 @@
+.edicion-recorrido {
+    padding-top: 3%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    background-color: #cfddbf;
+  }
+  
+  .fila-edrecorrido {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Asegúrate de que los elementos pueden envolverse si no hay suficiente espacio */
+    width: 100%; /* Ocupa el ancho total del contenedor padre para alinear correctamente */
+    margin-bottom: 10px;
+  }
+  
+  .campo-formulario {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px; /* Espaciado entre campos, ajusta según necesidad */
+  }
+  
+  .input-label {
+    margin-bottom: 5px;
+    font-size: 1rem;
+    color: #363636;
+    margin-left: 45px;
+    margin-right: 45px;
+  }
+  
+  /* Aquí se mantienen tus estilos originales para inputs y textareas, con pequeñas adaptaciones si es necesario */
+  .fila-edrecorrido input,
+  .fila-edrecorrido textarea {
+    flex: 1;
+    margin-left: 40px;
+    margin-right: 40px;
+    padding: 10px;
+    border: none;
+    background-color: black;
+    opacity: 80%;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    color: white;
+  }
+  
+  .fila-edrecorrido input {
+    width: 350px; /* Ajusta esto si necesitas que los inputs sean más grandes o pequeños */
+    height: 30px;
+  }
+  
+  .fila-edrecorrido .campo-formulario textarea {
+    resize: none;
+    width: 1400px; /* Ajusta la anchura según la necesidad */
+    height: 150px;
+  }
+  
+  .campo-formulario-upload .upload-box {
+    border: 2px dashed #C4C4C4; /* Borde punteado para la zona de subida de imagen */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Texto centrado */
+    margin-top: 15px; /* Espaciado superior */
+    background-color: #f0f0f0; /* Color de fondo para el área de subida */
+    cursor: pointer; /* Cambia el cursor a indicativo */
+    width: 40%; /* Ajusta al ancho deseado */
+    height: 200px; /* Ajusta al alto deseado */
+    display: flex; /* Usa flexbox para centrar el contenido */
+    align-items: center; /* Alinea el contenido verticalmente */
+    justify-content: center; /* Alinea el contenido horizontalmente */
+  }
+
+  .campo-formulario-upload {
+    display: flex;
+    flex-direction: column;
+    margin-right: 10px; /* Espaciado entre campos, ajusta según necesidad */
+    align-items: center;
+    justify-items: center;
+  }
+
+  .fila-edrecorrido input::placeholder,
+  .fila-edrecorrido textarea::placeholder {
+    color: white;
+  }
+  

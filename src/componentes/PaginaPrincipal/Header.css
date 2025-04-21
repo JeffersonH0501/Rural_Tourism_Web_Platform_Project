@@ -1,0 +1,51 @@
+.PaginaPrincipal-navigation {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    font-family: "Allerta";
+    font-size: 25px;
+    color: #294B29;
+    margin-top: 4vh;
+}
+
+.PaginaPrincipal-separador {
+    grid-column: 2;
+    margin: 2vw;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.PaginaPrincipal-inicio {
+    color: #294B29;
+    text-decoration: none; 
+    transition: color 0.3s ease; /* suavizar transición de color */
+    text-align: right;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        color: #00ac00;  
+      }
+} 
+
+.PaginaPrincipal-registro {
+    color: #294B29;
+    text-decoration: none; 
+    transition: color 0.3s ease; /* suavizar transición de color */
+    text-align: left;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        color: #00ac00; 
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .PaginaPrincipal-navigation {
+        font-size: 17px;
+    }
+}
+
+@media screen and (min-width: 401px) and (max-width: 600px) {
+    .PaginaPrincipal-navigation {
+        font-size: 20px;
+    }
+}

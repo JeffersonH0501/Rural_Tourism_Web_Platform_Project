@@ -1,0 +1,90 @@
+.promociones-container {
+    background-color: #dbe8c9;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.logo {
+    width: auto;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.tarjetas-container {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 20px; 
+}
+
+.promocion-card {
+    background-color: #dbe8c9;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+    width: calc(33.33% - 20px);
+    box-sizing: border-box;
+    height: auto;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative; 
+  }
+
+  .promocion-card button {
+    margin-top: auto; 
+    background-color: #294B29;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .promocion-card .star {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #ccc; 
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .promocion-card .star.active {
+    color: gold;
+  }
+
+.promocion-card h3 {
+    font-family: 'Allerta', sans-serif; 
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.promocion-card p {
+    font-family: 'Allerta', sans-serif; 
+    font-size: 16px;
+    margin-bottom: 10px;
+    flex-grow: 1; 
+}
+
+.filter-bar {
+    background-color: #dbe8c9;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-family: 'Allerta', sans-serif;
+  }
+  
+  .filter-bar label {
+    margin-right: 10px;
+  }
+  
+  .filter-bar select {
+    padding: 5px;
+    border: 1px solid #294B29;
+    border-radius: 5px;
+    font-family: 'Allerta', sans-serif;
+  }
+  

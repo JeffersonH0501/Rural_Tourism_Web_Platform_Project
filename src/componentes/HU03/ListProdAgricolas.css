@@ -1,0 +1,81 @@
+.product-card {
+    margin: 1em;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 200px;
+    box-sizing: border-box;
+  }
+  
+  .product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .product-card h3 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: #333;
+  }
+
+  .Listado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  .HeaderList {
+    display: flex;
+    align-items: center; /* Centra los elementos verticalmente */
+    gap: 20px; /* Espacio entre la imagen y el input */
+    background-color: #6f8969;
+  }
+
+  .HeaderList input {
+    border-radius: 20px;
+    width: 60%; /* Ajusta el ancho del input */
+    height: 30px; /* Ajusta la altura del input si es necesario */
+    padding: 5px; /* Ajusta el padding para cambiar el tamaño interno */
+    font-size: 14px; /* Ajusta el tamaño de la fuente dentro del input */
+    background-color: #cfddbf;
+    color: white;
+    border: 0;
+  }
+
+  .HeaderList img {
+    height: auto;
+    width: 15%; /* Ajusta según necesites */
+    margin-left: 25px;
+  }
+
+  .HeaderList button {
+    height: 50px;
+    width: 150px;
+    margin-left: 5%;
+    border-radius: 20px;
+    border: 0;
+  }
+
+  .HeaderList button {
+    height: 50px;
+    width: 150px;
+    margin-left: 5%;
+    border-radius: 20px;
+    border: 0;
+    cursor: pointer; /* Cambia el cursor a una mano */
+    transition: opacity 0.3s ease; /* Transición suave para la opacidad */
+    background-color: #7ccf76;
+    color: white;
+  }
+
+  .HeaderList button:hover{
+    opacity: 0.7; /* Cambia la opacidad cuando el mouse está encima */
+  }
+  
+
+  

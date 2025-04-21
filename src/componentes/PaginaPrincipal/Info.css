@@ -1,0 +1,70 @@
+.PaginaPrincipal-contenido {
+    background-color: #789461;
+    text-align: center;
+    height: 45%;
+    display: flex;
+}
+
+.PaginaPrincipal-contenido h1 {
+    font-family: "Secular One";
+    color: white;
+    font-size: 30px;
+    opacity: 90%;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+}
+
+.PaginaPrincipal-contenido p{
+    font-family: 'Allerta';
+    font-size: 20px;
+    color: #DBE7C9;
+    margin: 2vh 5vw;
+}
+
+.PaginaPrincipal-video {
+    width: 50%;
+    overflow: hidden;
+}
+
+.PaginaPrincipal-descripcion {
+    width: 50%;
+    padding-top: 12vh;
+}
+
+@media screen and (max-width: 400px) {
+
+    .PaginaPrincipal-contenido {
+        display: block;
+        height: 75%;
+    }
+
+    .PaginaPrincipal-video {
+        width: 100%;
+        height: 67%;
+    }
+
+    .PaginaPrincipal-descripcion {
+        width: 100%;
+        height: 50%;
+        padding-top: 4vh;
+    }
+
+    .PaginaPrincipal-contenido h1 {
+        font-size: 17px;
+    }
+
+    .PaginaPrincipal-contenido p {
+        font-size: 12px;
+    }
+
+}
+
+@media screen and (min-width: 401px) and (max-width: 1024px) {
+
+    .PaginaPrincipal-contenido p {
+        font-size: 15px;
+    }
+
+    .PaginaPrincipal-contenido h1 {
+        font-size: 22px;
+    }
+}

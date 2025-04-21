@@ -1,0 +1,177 @@
+.userinfo {
+    background-color: #cfddbf; /* Ajusta el color de fondo al que necesites */
+    padding: 10px 20px; /* Añade un poco de padding */
+    display: flex; /* Utiliza flexbox para alinear los elementos */
+    justify-content: space-between; /* Separa el título y la información del usuario */
+    align-items: center; /* Alinea los elementos verticalmente */
+  }
+
+.logod {
+    width: 18%;
+    height: 40%;
+}
+
+.userinfo p {
+    margin-right: 100px;
+    font-family: 'Allerta', sans-serif;
+}
+
+.iconusuario {
+    width: 50px; /* Establece el ancho que desees */
+    height: 50px; /* Establece el alto que desees */
+    vertical-align: middle; /* Esto alinea verticalmente la imagen con el texto */
+    margin-left: 10px;
+  }
+
+.titulocrear {
+    color: #50623A;
+    text-align: center;
+    font-family: 'Secular One', sans-serif;
+    background-color: #cfddbf; /* Ajusta el color de fondo al que necesites */
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-weight: 400;
+    font-size: 40px;
+  }
+
+  .creacion {
+    width: 100%;
+    height: 400px;
+    background-color: #cfddbf;
+    background-size: cover;
+    display: flex; /* Organiza los elementos internos en una fila */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    gap: 30px; /* Espaciado entre los inputs */
+    flex-wrap: wrap; /* Permite que los inputs se pasen a la siguiente línea si no hay espacio suficiente */
+    padding-top: 70px;
+    justify-content: center; /* Centra los elementos horizontalmente */
+  }
+  
+  .creacion .campo input[type="text"],
+  .creacion .campo textarea {
+    width: 80%; /* Ajusta esto para controlar cuánto espacio ocupa el input/textarea */
+    border: none; /* Remover el borde predeterminado */
+    background-color: #181818; /* Color de fondo para los inputs */
+    padding: 10px; /* Reducir el espaciado interno de los inputs */
+    border-radius: 20px; /* Bordes redondeados para los inputs */
+    margin-bottom: 10px; /* Espaciado debajo de cada input si se envuelven */
+    height: 30px;
+    color: white;
+  }
+
+  .creacion .campo input[type="text"]::placeholder,
+  .creacion .campo textarea::placeholder {
+    color: white;
+  }
+
+  .creacion .campo textarea {
+    width: 93%; /* Asegúrate de que el textarea tenga el mismo ancho que los inputs de texto */
+    height: 100px; /* Ajusta la altura si es necesario */
+    resize: none;
+  }
+
+  /* Puedes agregar más estilos para los estados de focus o si necesitas algún otro ajuste específico */
+.creacion input[type="text"]:focus,
+.creacion textarea:focus {
+  outline: none; /* Remover el contorno predeterminado al hacer focus */
+  box-shadow: 0 0 5px #a9a9a9; /* Sombra para resaltar el input activo */
+}
+
+.creacion .upload-box {
+    border: 2px dashed #C4C4C4; /* Borde punteado para la zona de subida de imagen */
+    border-radius: 20px; /* Bordes redondeados */
+    padding: 20px; /* Espaciado interno */
+    text-align: center; /* Texto centrado */
+    margin-top: 0px; /* Espaciado superior */
+    background-color: #f0f0f0; /* Color de fondo para el área de subida */
+    cursor: pointer; /* Cambia el cursor a indicativo */
+    width: 50%; /* Ajusta al ancho deseado */
+    height: 100px; /* Ajusta al alto deseado */
+    display: flex; /* Usa flexbox para centrar el contenido */
+    align-items: center; /* Alinea el contenido verticalmente */
+    justify-content: center; /* Alinea el contenido horizontalmente */
+    
+  }
+  
+  /* Ajustes para pantallas pequeñas, si es necesario */
+  @media (max-width: 600px) {
+    .creacion .upload-box {
+      width: 80%; /* Ajusta el ancho en pantallas pequeñas */
+      /* Otros ajustes si es necesario */
+    }
+  }
+
+  .fondo {
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    background: url(../../assets/images/fondo.png);
+    background-size: cover; /* Asegura que la imagen cubra completamente el div */
+    background-position: center 65%; /* Alinea la parte superior de la imagen con la parte superior del div */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+  }
+
+  .fondo button {
+    margin-top: 10%;
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+    border: 0;
+    cursor: pointer; /* Cambia el cursor a una mano */
+    transition: opacity 0.3s ease; /* Transición suave para la opacidad */
+    background-color: #294B29;
+    opacity: 80%;
+    color: white;
+  }
+
+  .fondo button:hover{
+    opacity: 0.6; /* Cambia la opacidad cuando el mouse está encima */
+  }
+
+
+  .creacion .campo,
+  .creacion .campo-descripcion {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .creacion .campo label,
+  .creacion .campo-descripcion label {
+    margin-bottom: 5px;
+    color: #4e4e4e; /* O el color que desees para los títulos */
+    font-size: 1rem;
+    margin-left: 15px;
+  }
+  
+  /* Ajuste específico para los inputs dentro de .campo para mantenerlos en línea */
+  @media (min-width: 601px) {
+    .creacion .campo {
+      width: calc(30% - 20px);
+      flex-basis: calc(30% - 20px); /* Esto mantiene tres inputs en una fila */
+    }
+  }
+  
+  /* Asegurar que el textarea ocupe el ancho completo en su propia fila */
+  .creacion .campo-descripcion {
+    width: 93%;
+  }
+  
+  .creacion .campo-descripcion textarea {
+    width: 100%; /* Hace que el textarea ocupe todo el ancho del contenedor */
+  }
+
+  .creacion .campo-upload-box {
+    height: 40%;
+    width: 80%; /* Asegura que ocupe todo el ancho disponible para alinearse correctamente con el textarea */
+    display: flex;
+    justify-content: center; /* Centra el área de subida de archivos horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente dentro del contenedor */
+    padding-bottom: 200px;
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 160px; /* Add margin to the top */
+  }

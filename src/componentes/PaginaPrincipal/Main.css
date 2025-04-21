@@ -1,0 +1,56 @@
+.PaginaPrincipal-logo {
+    text-align: center;
+    width: 100%;
+    height: auto;
+}
+
+.PaginaPrincipal-boton button {
+    background-color: #294B29;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    font-size: 25px;
+    margin: 0 auto;
+    cursor: pointer;
+    border-radius: 100px;
+    width: 20%;
+    font-family: "Secular One";
+    opacity: 80%;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.7);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4), 0 6px 20px 0 rgba(0,0,0,0.4);
+    }
+    
+}
+
+@media screen and (max-width: 400px) {
+
+    .PaginaPrincipal-logo {
+        margin-top: 30%;
+    }
+
+    .PaginaPrincipal-logo img {
+        width: 80%;
+    }
+
+    .PaginaPrincipal-boton button {
+        font-size: 17px;
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 401px) and (max-width: 600px) {
+    .PaginaPrincipal-logo img {
+        width: 90%;
+    }
+
+    .PaginaPrincipal-boton button {
+        font-size: 20px;
+        width: 25%;
+    }
+}

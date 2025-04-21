@@ -1,0 +1,348 @@
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+     /* Cambia el color de fondo según tu diseño */
+     
+    
+  }
+  
+  .background-shared {
+    background-image:url(../images/fondo.png); /* Asegúrate de tener la ruta correcta a tu imagen */
+    padding: 100px;
+    background-size: 100% 100%; /* Esto ajusta la imagen exactamente al tamaño del header */
+    background-position: center;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  
+  .logo img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .logo {
+    background-color: #d0dcbc;
+    text-align: center;
+    width: 100%;
+    height: 190px;
+  }
+  
+  .navigation {
+    text-align: center;
+    font-family: 'Secular One';font-size: 22px;
+    color: #294B29;
+    background-color: #d0dcbc;
+    top: #DBE7C9;
+    vertical-align: auto;
+  }
+  
+  .navigation a {
+    text-decoration: none;
+    font-family: 'Secular One';font-size: 22px;
+    color: #294B29;
+    margin: 0 10px;
+  }
+  
+  .main {
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .main button {
+    background-color: #294B29; /* Color de fondo */
+    border: none;
+    color: white;
+    padding: 15px 2vw; /* Uso de vw para el padding horizontal hace que sea responsive */
+    text-align: center;
+    text-decoration: none;
+    display: block; /* Cambiado de inline-block para permitir el margin auto */
+    font-size: calc(1vw + 10px); /* Ajusta el tamaño de la fuente de forma responsiva */
+    margin: 4px auto; /* Centra el botón horizontalmente */
+    cursor: pointer;
+    border-radius: 100px;
+    width: 30%; /* Ajuste el porcentaje según la necesidad */
+    min-width: 150px; /* Asegura que el texto quepa */
+    font-family: 'Secular One';
+    opacity: 80%;
+  }
+  
+  .footer {
+    background-color: #294B29; /* Cambia el color de fondo según tu diseño */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding-top: 20px;
+  }
+
+  .footer p{
+    margin:0;
+  }
+
+  .login {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Esto centra verticalmente el contenido */
+    background-color: #d0dcbc;
+    text-shadow: 2px 3px 5px #3a37378d; 
+  }
+
+  .descr{
+    height: 300px;
+    background-color: #DBE7C9;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+
+  }
+
+  .descr p{
+    margin: 0;
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    font-family: 'Allerta';font-size: 20px;
+    color: #294B29
+  }
+
+  .pagricolas{
+    height: 350px;
+    background-color: #789461;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .pagricolas div{
+    align-items: center; /* Esto centra los elementos verticalmente en el contenedor */
+    justify-content: center; /* Esto centra los elementos horizontalmente en el contenedor */
+  }
+
+  .pagricolas div h1 {
+    margin: 0;
+    margin-left: 26%;
+    padding-top: 5%;
+    font-family: 'Secular One';
+    font-size: 35px;
+    color: #FFFFFF;
+    align-items: center;
+    
+  }
+
+  .pagricolas div p {
+    text-align: center;
+    margin: 0;
+    margin-left: 5%;
+    margin-right: 18%;
+    padding-top: 5%;
+    font-family: 'Allerta';
+    font-size: 20px;
+    color: #DBE7C9;
+  }
+
+  .pagricolas img {
+
+    margin-top: 20px;
+    margin-right: 10%;
+    height: 300px;
+    width: 500px;
+    border-radius: 100%;
+  }
+
+
+  .artesanias{
+    height: 350px;
+    background-color: #789461;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .artesanias div{
+    align-items: center; /* Esto centra los elementos verticalmente en el contenedor */
+    justify-content: center; /* Esto centra los elementos horizontalmente en el contenedor */
+  }
+
+  .artesanias div h1 {
+    margin: 0;
+    margin-left: 39%;
+    padding-top: 5%;
+    font-family: 'Secular One';
+    font-size: 35px;
+    color: #FFFFFF;
+    align-items: center;
+    
+  }
+
+  .artesanias div p {
+    text-align: center;
+    margin: 0;
+    margin-left: 15%;
+    margin-right: 18%;
+    padding-top: 5%;
+    font-family: 'Allerta';
+    font-size: 20px;
+    color: #DBE7C9;
+  }
+
+  .artesanias img {
+
+    margin-top: 20px;
+    margin-left: 5%;
+    height: 300px;
+    width: 500px;
+    border-radius: 100%;
+  }
+
+
+  .tours{
+    height: 350px;
+    background-color: #789461;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .tours div{
+    align-items: center; /* Esto centra los elementos verticalmente en el contenedor */
+    justify-content: center; /* Esto centra los elementos horizontalmente en el contenedor */
+  }
+
+  .tours div h1 {
+    margin: 0;
+    margin-left: 38%;
+    padding-top: 5%;
+    font-family: 'Secular One';
+    font-size: 35px;
+    color: #FFFFFF;
+    align-items: center;
+    
+  }
+
+  .tours div p {
+    text-align: center;
+    margin: 0;
+    margin-left: 5%;
+    margin-right: 18%;
+    padding-top: 5%;
+    font-family: 'Allerta';
+    font-size: 20px;
+    color: #DBE7C9;
+  }
+
+  .tours img {
+
+    margin-top: 20px;
+    margin-right: 10%;
+    height: 300px;
+    width: 500px;
+    border-radius: 100%;
+  }
+
+  .hospedajes{
+    height: 350px;
+    background-color: #789461;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .hospedajes div{
+    align-items: center; /* Esto centra los elementos verticalmente en el contenedor */
+    justify-content: center; /* Esto centra los elementos horizontalmente en el contenedor */
+  }
+
+  .hospedajes div h1 {
+    margin: 0;
+    margin-left: 39%;
+    padding-top: 5%;
+    font-family: 'Secular One';
+    font-size: 35px;
+    color: #FFFFFF;
+    align-items: center;
+    
+  }
+
+  .hospedajes div p {
+    text-align: center;
+    margin: 0;
+    margin-left: 12%;
+    margin-right: 18%;
+    padding-top: 5%;
+    font-family: 'Allerta';
+    font-size: 20px;
+    color: #DBE7C9;
+  }
+
+  .hospedajes img {
+
+    margin-top: 20px;
+    margin-left: 5%;
+    height: 300px;
+    width: 500px;
+    border-radius: 100%;
+  }
+
+  section{
+    display: flex;
+    width: 100%;
+    height: 430px;
+  }
+
+  section img{
+    width: 0px;
+    flex-grow: 1;
+    object-fit: cover;
+    opacity: .8;
+    transition: .5s ease;
+  }
+
+  section img:hover{
+    width: 300px;
+    opacity: 1;
+    filter: contrast(120%);
+  }
+
+  .abajo{
+    height: 45px;
+    background-color: #789461;
+  }
+
+  body::-webkit-scrollbar {
+    width: 10px; /* width of the entire scrollbar */
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: #294B29; /* makes the tracking area transparent */
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: white; /* color of the scroll thumb */
+    border-radius: 100px; /* roundness of the scroll thumb */
+  }
+
+  .container {
+    display: flex; /* Usa Flexbox para alinear los elementos horizontalmente */
+    height: 50px; /* Altura total del contenedor */
+  }
+  
+  .section {
+    flex-grow: 1; /* Cada sección crece de manera igual para ocupar 1/4 del espacio disponible */
+    padding: 5px; /* Espaciado interno para el contenido */
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    background-color: #dbe6c8;
+    font-family: 'Secular One';font-size: 19px;
+    color: #294B29;
+  }
+  
+  /* Elimina el borde derecho de la última sección */
+  .section:last-child {
+    border-right: none;
+  }
+  

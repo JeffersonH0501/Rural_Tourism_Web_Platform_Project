@@ -1,0 +1,35 @@
+describe('Testing basic Angular registration', () => {
+    beforeEach(()=>{
+        cy.visit('http://localhost:3000/home')
+        cy.wait(1000)
+    })
+    it('Test Main Page Buttons', () => {
+        cy.get('main.PaginaPrincipal-boton').click()
+        cy.get('div.imagen-contenedor').eq(0).click()
+        cy.wait(1000)
+        cy.get('div.imagen-contenedor').eq(1).click()
+        cy.wait(1000)
+        cy.get('div.imagen-contenedor').eq(2).click()
+        cy.wait(1000)
+        cy.get('div.imagen-contenedor').eq(3).click()
+        cy.wait(1000)
+        cy.get('div.imagen-contenedor').eq(4).click()
+        cy.wait(1000)
+        cy.url().should('eq', 'http://localhost:3000/promo')
+    })
+    it('Test Language Buttons', () => {
+        cy.get('button.PaginaPrincipal-btn').eq(0).click()
+        cy.wait(1000)
+        cy.get('button.PaginaPrincipal-btn').eq(1).click()
+    })
+    it('Navitate to Login', ()=>{
+        cy.get('a.PaginaPrincipal-inicio').click()
+        cy.wait(1000)
+        cy.url().should('eq', 'http://localhost:3000/inicio')
+    })
+    it('Navitate to Register', ()=>{
+        cy.get('a.PaginaPrincipal-registro').click()
+        cy.wait(1000)
+        cy.url().should('eq', 'http://localhost:3000/registro')
+    })
+  })
