@@ -1,0 +1,134 @@
+name: Unify frontend and backend repositories
+
+on:
+  push:
+    branches:
+      - integration/unified-project
+
+permissions:
+  contents: write
+
+jobs:
+  unify:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout integration branch
+        uses: actions/checkout@v4
+        with:
+          ref: integration/unified-project
+          fetch-depth: 0
+
+      - name: Build monorepo structure
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Keep workflow metadata at the repository root and move the current
+          # frontend project into its own workspace.
+          mkdir -p frontend
+          shopt -s dotglob nullglob
+          for item in *; do
+            case "$item" in
+              .git|.github|frontend|backend)
+                continue
+                ;;
+            esac
+            mv "$item" frontend/
+          done
+
+          # Import the complete backend repository, excluding only its own
+          # Git metadata because this repository becomes the single source of truth.
+          rm -rf /tmp/back-web-project
+          git clone --depth 1 https://github.com/JeffersonH0501/Back_Web_Project.git /tmp/back-web-project
+          rm -rf /tmp/back-web-project/.git
+          rm -rf backend
+          mkdir -p backend
+          cp -a /tmp/back-web-project/. backend/
+
+          cat > package.json <<'EOF'
+          {
+            "name": "web-project",
+            "version": "1.0.0",
+            "private": true,
+            "workspaces": [
+              "frontend",
+              "backend"
+            ],
+            "scripts": {
+              "install:all": "npm install --prefix frontend && npm install --prefix backend",
+              "frontend": "npm start --prefix frontend",
+              "backend": "npm run start:dev --prefix backend",
+              "build": "npm run build --prefix frontend && npm run build --prefix backend",
+              "test:frontend": "npm test --prefix frontend",
+              "test:backend": "npm test --prefix backend"
+            }
+          }
+          EOF
+
+          cat > .gitignore <<'EOF'
+          node_modules/
+          frontend/node_modules/
+          backend/node_modules/
+          frontend/build/
+          backend/dist/
+          backend/coverage/
+          .env
+          .env.*
+          *.log
+          EOF
+
+          cat > README.md <<'EOF'
+          # Web Project
+
+          Monorepo que unifica el frontend y el backend del mismo proyecto.
+
+          ## Estructura
+
+          - `frontend/`: aplicación React proveniente de `Front_Web_Project`.
+          - `backend/`: API NestJS proveniente de `Back_Web_Project`.
+
+          ## Instalación
+
+          ```bash
+          npm run install:all
+          ```
+
+          ## Desarrollo
+
+          Frontend:
+
+          ```bash
+          npm run frontend
+          ```
+
+          Backend:
+
+          ```bash
+          npm run backend
+          ```
+
+          ## Build
+
+          ```bash
+          npm run build
+          ```
+
+          Los repositorios originales se mantienen intactos mientras se valida esta rama de integración.
+          EOF
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: unify frontend and backend into monorepo"
+          git push origin integration/unified-project
+
+      - name: Summary
+        run: |
+          echo "Unified repository created on integration/unified-project" >> "$GITHUB_STEP_SUMMARY"
