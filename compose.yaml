@@ -1,0 +1,42 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: rural_tourism
+      POSTGRES_USER: rural
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-local-development-password}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rural -d rural_tourism"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [platform]
+  api:
+    build: ./backend
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      DATABASE_URL: postgresql://rural:${POSTGRES_PASSWORD:-local-development-password}@db:5432/rural_tourism
+      JWT_SECRET: ${JWT_SECRET:-replace-this-local-secret-before-sharing}
+      WEB_ORIGIN: http://localhost:8080
+      COOKIE_SECURE: "false"
+    depends_on:
+      db: { condition: service_healthy }
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:4000/api/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+    networks: [platform]
+  web:
+    build: ./frontend
+    ports: ["8080:80"]
+    depends_on:
+      api: { condition: service_healthy }
+    networks: [platform]
+volumes:
+  postgres_data:
+networks:
+  platform:

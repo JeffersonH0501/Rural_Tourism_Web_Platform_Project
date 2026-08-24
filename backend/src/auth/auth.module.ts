@@ -1,33 +1,22 @@
-/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
-
-import { UsuarioService } from '../models/usuario.service';
-
-import constants from '../config/constants';
-
-import { UsuarioModule } from '../models/usuario.module';
-
+import { env } from '../config/environment';
+import { UsersModule } from '../users/users.module';
+import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-
-import { LocalStrategy } from './strategys/local-strategy';
-import { JwtStrategy } from './strategys/jwt.strategy';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsuarioEntity } from 'src/models/usuario.entity';
-
+import { JwtStrategy } from './jwt.strategy';
 @Module({
-    imports: [
-      TypeOrmModule.forFeature([UsuarioEntity]),
-      UsuarioModule,
-      PassportModule,
-      JwtModule.register({
-        secret: constants.JWT_SECRET,
-        signOptions: { expiresIn: constants.JWT_EXPIRES_IN },
-      })
-      ],
-    providers: [AuthService, UsuarioService, JwtService, LocalStrategy, JwtStrategy], 
-    exports: [AuthService]
-    
+  imports: [
+    UsersModule,
+    PassportModule,
+    JwtModule.register({
+      secret: env.jwtSecret,
+      signOptions: { expiresIn: env.jwtExpiresIn as any },
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy],
+  exports: [JwtModule],
 })
 export class AuthModule {}

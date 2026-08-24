@@ -6,4 +6,6 @@ backend/dist/
 backend/coverage/
 .env
 .env.*
+!.env.example
+!backend/.env.example
 *.log

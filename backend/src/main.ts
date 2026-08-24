@@ -1,32 +1,36 @@
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
-import { ExpressAdapter } from '@nestjs/platform-express';
-import * as express from 'express';
+import { NestFactory } from '@nestjs/core';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as cookieParser from 'cookie-parser';
+import { AppModule } from './app.module';
+import { env } from './config/environment';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, new ExpressAdapter(express()));
-
-  const config = new DocumentBuilder()
-  .setTitle('API Doc')
-  .setDescription('La descripción de la API')
-  .setVersion('1.0')
-  .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('doc', app, document);
-
-  app.enableCors({
-    origin: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'], 
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    preflightContinue: false, 
-    optionsSuccessStatus: 204,
-    credentials: true, 
-    maxAge: 3600,
-  });
-
-  await app.listen(4000);
-  app.useGlobalPipes(new ValidationPipe());
+  const app = await NestFactory.create(AppModule);
+  app.setGlobalPrefix('api');
+  app.use(cookieParser());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );
+  app.enableCors({ origin: env.webOrigin, credentials: true });
+  app.enableShutdownHooks();
+  const swagger = new DocumentBuilder()
+    .setTitle('Rural Tourism API')
+    .setDescription(
+      'API for rural products, crafts, farms, tours, and promotions',
+    )
+    .setVersion('1.0')
+    .addCookieAuth('access_token')
+    .build();
+  SwaggerModule.setup(
+    'api/docs',
+    app,
+    SwaggerModule.createDocument(app, swagger),
+  );
+  await app.listen(env.port, '0.0.0.0');
 }
 bootstrap();

@@ -1,0 +1,2 @@
+import React from 'react'; import {Link} from 'react-router-dom'; import {useTranslation} from 'react-i18next';
+export default function Home(){const {t}=useTranslation();return <main><section className="hero"><p className="eyebrow">{t('home.eyebrow')}</p><h1>{t('home.title')}</h1><p>{t('home.subtitle')}</p><Link className="button" to="/tours">{t('home.explore')}</Link></section><section className="features">{['local','authentic','sustainable'].map(key=><article key={key}><h2>{t(`home.${key}`)}</h2><p>{t(`home.${key}Text`)}</p></article>)}</section></main>}
