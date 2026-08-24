@@ -1,57 +1,115 @@
-# Rural Tourism Web Platform
+# Ruralia
 
-A bilingual marketplace for Colombian rural tourism. Visitors discover agricultural products, crafts, rural stays, tours, and promotions. Farmers and artisans securely manage their own listings.
+Ruralia is a bilingual marketplace for Colombian rural tourism. It connects visitors with farmers and artisans offering agricultural products, crafts, rural stays, guided tours, and promotions.
+
+For installation and production-like Docker instructions, see [DEPLOYMENT.md](DEPLOYMENT.md).
+
+## Product capabilities
+
+- Public catalogs for products, crafts, stays, tours, and promotions
+- English and Spanish user interface
+- Visitor, farmer, artisan, and administrator roles
+- Secure registration and cookie-based authentication
+- Owner-restricted catalog management
+- Responsive layouts for desktop, tablet, and mobile
+- Idempotent demonstration data for development and evaluation
 
 ## Architecture
 
-- **Web:** React 18, React Router, i18next, and Nginx
-- **API:** NestJS, Passport JWT, validation, Swagger, and TypeORM
-- **Database:** PostgreSQL 16 with versioned migrations
-- **Authentication:** signed JWT in an HTTP-only cookie
-
-Nginx serves the single-page application and proxies same-origin `/api` traffic to NestJS.
-
-## Run with Docker
-
-Docker Engine with Docker Compose v2 is required.
-
-Deploy with one command. The script creates `.env` with cryptographically random local secrets when the file does not exist, builds the images, starts the services, waits for the API health check, and loads the idempotent demo dataset.
-
-```bash
-bash deploy.sh
+```text
+Browser
+   |
+   | HTTP :8080
+   v
+Nginx / React SPA
+   |
+   | /api reverse proxy
+   v
+NestJS API
+   |
+   | TypeORM
+   v
+PostgreSQL 16
 ```
 
-The equivalent manual commands are:
+The React application and API share one browser origin through Nginx. Nginx serves the compiled single-page application, handles React Router fallback, and proxies `/api` requests to NestJS. The API owns authentication, authorization, validation, business rules, and persistence.
 
-```bash
-cp .env.example .env
-docker compose up --build --detach
-```
+## Technology
 
-Open <http://localhost:8080>. API documentation is at <http://localhost:8080/api/docs> and health status at <http://localhost:8080/api/health>.
-
-Change both secrets in `.env` before sharing or exposing the deployment. PostgreSQL data persists in the `postgres_data` volume. Migrations and the idempotent demo seed run automatically.
-
-```bash
-docker compose down
-docker compose down --volumes # also removes local database data
-```
-
-## Demo data
-
-Every deployment ensures that demo accounts and one example item for each catalog are available without duplicating existing rows.
-
-All demo accounts use password `DemoPass123!`.
-
-| Role | Email |
+| Layer | Technologies |
 | --- | --- |
-| Farmer | `farmer@example.com` |
-| Artisan | `artisan@example.com` |
-| Visitor | `visitor@example.com` |
+| Web | React 18, React Router, i18next |
+| Web server | Nginx |
+| API | NestJS, Passport, class-validator |
+| Persistence | PostgreSQL 16, TypeORM migrations |
+| Authentication | JWT stored in an HTTP-only cookie |
+| Containers | Docker, Docker Compose |
+| Testing | Jest, React Testing Library, Cypress |
+
+## Repository structure
+
+```text
+.
+├── backend/
+│   └── src/
+│       ├── auth/       Authentication and authorization
+│       ├── catalog/    Products, crafts, farms, tours, promotions
+│       ├── config/     Typed runtime environment
+│       ├── database/   Data source, migrations, and seed
+│       ├── health/     Container health endpoint
+│       └── users/      Users, roles, and registration
+├── frontend/
+│   ├── public/locales/ English and Spanish translations
+│   └── src/
+│       ├── api/        Central API client
+│       ├── auth/       Session and authentication screens
+│       ├── catalog/    Catalog browsing and management
+│       ├── dashboard/  Authenticated dashboard
+│       └── layout/     Shared navigation
+├── compose.yaml
+├── deploy.sh
+└── DEPLOYMENT.md
+```
+
+## API design
+
+All endpoints use the `/api` prefix and English resource names:
+
+- `/api/auth`
+- `/api/users`
+- `/api/agricultural-products`
+- `/api/crafts`
+- `/api/farms`
+- `/api/tours`
+- `/api/promotions`
+- `/api/health`
+
+Swagger documentation is available at `/api/docs` while the application is running.
+
+Anonymous users can read public catalogs. Farmers and artisans can create and modify only the supported resources they own. Administrators can manage all resources. Ownership is derived from the authenticated session rather than accepted from browser input.
+
+## Security model
+
+- Passwords are hashed with bcrypt and never serialized.
+- Authentication tokens are stored in an `HttpOnly`, `SameSite=Lax` cookie.
+- Secure cookies can be enabled for HTTPS deployments.
+- Registration rejects administrator roles, unknown roles, and unknown properties.
+- DTO validation covers identifiers, strings, numbers, dates, URLs, and role values.
+- CORS is restricted to the configured web origin.
+- Database schema synchronization is disabled in favor of migrations.
+
+## Localization
+
+Repository internals, database identifiers, API contracts, and canonical data are English. The visible interface supports English and Spanish through:
+
+- `frontend/public/locales/en/common.json`
+- `frontend/public/locales/es/common.json`
+
+Translation keys are semantic English identifiers and should be added to both locale files.
 
 ## Local development
 
-Use Node.js 20 and PostgreSQL.
+Use Node.js 20 and a running PostgreSQL database.
 
 ```bash
 npm run install:all
@@ -77,26 +135,3 @@ npm run test:frontend -- --watchAll=false
 npm run build
 npm run lint --prefix backend
 ```
-
-## Configuration
-
-| Variable | Purpose |
-| --- | --- |
-| `DATABASE_URL` | PostgreSQL connection URL |
-| `JWT_SECRET` | Session signing secret; required in production |
-| `JWT_EXPIRES_IN` | Session lifetime, default `2h` |
-| `WEB_ORIGIN` | Allowed development browser origin |
-| `COOKIE_SECURE` | Use `true` behind HTTPS |
-| `PORT` | API port, default `4000` |
-
-## Localization and security
-
-Repository code and API contracts are English. UI translations live under `frontend/public/locales/en` and `frontend/public/locales/es`; new keys must be added to both.
-
-Catalog reads are public. Registration permits visitor, farmer, or artisan roles. Producers can mutate only resources they own; administrators can manage all resources. Password hashes are never returned by the API.
-
-## Troubleshooting
-
-- Check health with `docker compose ps`.
-- Inspect failures with `docker compose logs api`.
-- For deployment, use HTTPS and set `COOKIE_SECURE=true`.
